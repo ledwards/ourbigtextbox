@@ -1,0 +1,21 @@
+<head>
+  <title>ourbigtextbox.com</title>
+</head>
+<body>
+  <header>
+    <h1>ourbigtextbox.com</h1>
+  </header>
+  {{> bigtextbox}}
+  <footer>
+    inspired by Grant Hutchins | <a href="http://nertzy.com">nertzy.com</a>
+    <br />
+    created by Lee Edwards | <a href="http://ledwards.com">ledwards.com</a>
+  </footer>
+  <script type="text/javascript">
+    document.getElementById("bigtextbox").focus();
+  </script>
+</body>
+
+<template name="bigtextbox">
+<textarea id="bigtextbox" placeholder="share this URL to collaborate">{{entry}}</textarea>
+</template>
