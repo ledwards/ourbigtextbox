@@ -11,7 +11,7 @@ Template.bigtextbox.entry = function() {
 }
 
 Template.bigtextbox.events({
-  'keypress': function(event) {
+  'keydown': function(event) {
                 setTimeout(function () {
                   text = $(event.target).val();
                   entry = Entries.findOne({slug: slug});
