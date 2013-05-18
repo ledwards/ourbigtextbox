@@ -1,27 +1,25 @@
 var slug = location.pathname;
 
 Template.bigtextbox.entry = function() {
-  var entry = Entries.findOne({slug: slug});
+  entry = Entries.findOne({slug: slug});
   if(entry) {
     return entry.text;
-  }
-  else {
-    return "";
   }
 }
 
 Template.bigtextbox.events({
   'keydown': function(event) {
                 setTimeout(function () {
-                  text = $(event.target).val();
+                  text = $("#bigtextbox").val();
                   entry = Entries.findOne({slug: slug});
-
-                  if (entry) {
-                    Entries.update(entry._id, {$set: {text: text}});
-                  }
-                  else {
-                    Entries.insert({slug: slug, text: text});
-                  }
+                  Entries.update(entry._id, {$set: {text: text}});
                 }, 0);
               }
 });
+
+Template.bigtextbox.rendered = function() {
+  entry = Entries.findOne({slug: slug});
+  if (entry) {
+    $("#bigtextbox").val(entry.text);
+  }
+}
