@@ -2,7 +2,7 @@ var slug = location.pathname;
 
 Template.bigtextbox.entry = function() {
   entry = Entries.findOne({slug: slug});
-  if(entry) {
+  if (entry) {
     return entry.text;
   }
 }
@@ -12,7 +12,12 @@ Template.bigtextbox.events({
                 setTimeout(function () {
                   text = $("#bigtextbox").val();
                   entry = Entries.findOne({slug: slug});
-                  Entries.update(entry._id, {$set: {text: text}});
+                  if (entry) {
+                    Entries.update(entry._id, {$set: {text: text}});
+                  }
+                  else {
+                    Entries.insert({slug: slug, text: text});
+                  }
                 }, 0);
               }
 });
